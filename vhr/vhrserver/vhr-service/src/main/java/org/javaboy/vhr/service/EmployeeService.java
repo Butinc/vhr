@@ -59,18 +59,18 @@ public class EmployeeService {
         employee.setContractTerm(Double.parseDouble(decimalFormat.format(month / 12)));
         int result = employeeMapper.insertSelective(employee);
         if (result == 1) {
-            Employee emp = employeeMapper.getEmployeeById(employee.getId());
-            //生成消息的唯一id
-            String msgId = UUID.randomUUID().toString();
-            MailSendLog mailSendLog = new MailSendLog();
-            mailSendLog.setMsgId(msgId);
-            mailSendLog.setCreateTime(new Date());
-            mailSendLog.setExchange(MailConstants.MAIL_EXCHANGE_NAME);
-            mailSendLog.setRouteKey(MailConstants.MAIL_ROUTING_KEY_NAME);
-            mailSendLog.setEmpId(emp.getId());
-            mailSendLog.setTryTime(new Date(System.currentTimeMillis() + 1000 * 60 * MailConstants.MSG_TIMEOUT));
-            mailSendLogService.insert(mailSendLog);
-            rabbitTemplate.convertAndSend(MailConstants.MAIL_EXCHANGE_NAME, MailConstants.MAIL_ROUTING_KEY_NAME, emp, new CorrelationData(msgId));
+//            Employee emp = employeeMapper.getEmployeeById(employee.getId());
+//            //生成消息的唯一id
+//            String msgId = UUID.randomUUID().toString();
+//            MailSendLog mailSendLog = new MailSendLog();
+//            mailSendLog.setMsgId(msgId);
+//            mailSendLog.setCreateTime(new Date());
+//            mailSendLog.setExchange(MailConstants.MAIL_EXCHANGE_NAME);
+//            mailSendLog.setRouteKey(MailConstants.MAIL_ROUTING_KEY_NAME);
+//            mailSendLog.setEmpId(emp.getId());
+//            mailSendLog.setTryTime(new Date(System.currentTimeMillis() + 1000 * 60 * MailConstants.MSG_TIMEOUT));
+//            mailSendLogService.insert(mailSendLog);
+//            rabbitTemplate.convertAndSend(MailConstants.MAIL_EXCHANGE_NAME, MailConstants.MAIL_ROUTING_KEY_NAME, emp, new CorrelationData(msgId));
         }
         return result;
     }
