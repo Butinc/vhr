@@ -929,4 +929,8 @@
         transform: translateX(10px);
         opacity: 0;
     }
+
+    .el-form-item--small {
+        display: flex;
+    }
 </style>
