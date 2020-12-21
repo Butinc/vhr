@@ -116,7 +116,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     }
                 })
                 .and()
-                .logout()
+            .logout()
                 .logoutSuccessHandler((req, resp, authentication) -> {
                             resp.setContentType("application/json;charset=utf-8");
                             PrintWriter out = resp.getWriter();
@@ -127,7 +127,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 )
                 .permitAll()
                 .and()
-                .csrf().disable().exceptionHandling()
+            .csrf().disable().exceptionHandling()
                 //没有认证时，在这里处理结果，不要重定向
                 .authenticationEntryPoint((req, resp, authException) -> {
                             resp.setContentType("application/json;charset=utf-8");
