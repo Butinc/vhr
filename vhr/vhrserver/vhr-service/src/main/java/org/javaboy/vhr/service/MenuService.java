@@ -31,7 +31,7 @@ public class MenuService {
     @Autowired
     MenuRoleMapper menuRoleMapper;
     public List<Menu> getMenusByHrId() {
-        return menuMapper.getMenusByHrId(((Hr) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
+        return menuMapper.getMenusByHrId(3);
     }
 
     @Cacheable
