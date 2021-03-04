@@ -30,6 +30,14 @@ public class CustomFilterInvocationSecurityMetadataSource implements FilterInvoc
     @Autowired
     MenuService menuService;
     AntPathMatcher antPathMatcher = new AntPathMatcher();
+
+    /**
+     * 获取当前请求 url 所需的所有角色
+     * 如果没有匹配的 url 地址，则返回 ROLE_LOGIN 角色
+     * @param object 过滤器调用对象
+     * @return 角色名称的列表
+     * @throws IllegalArgumentException 异常
+     */
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
         String requestUrl = ((FilterInvocation) object).getRequestUrl();
